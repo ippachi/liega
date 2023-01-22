@@ -4,6 +4,7 @@ source "https://rubygems.org"
 
 gem "rake", require: false
 gem "zeitwerk"
+gem "ulid"
 
 group :development do
   gem "rubocop", require: false
