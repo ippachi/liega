@@ -1,5 +1,5 @@
 module Liega::Domain::Model
-  class ProjectLeader
+  class User
     attr_reader :id
 
     def initialize
