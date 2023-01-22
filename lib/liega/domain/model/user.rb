@@ -6,8 +6,7 @@ module Liega::Domain::Model
       @id = ULID.generate
     end
 
-    def create_project(name:)
-      Project.new(name:, leader_id: id)
-    end
+    def create_project(name:) = Project.new(name:, leader_id: id)
+    def to_h = { id: }
   end
 end

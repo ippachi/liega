@@ -5,8 +5,9 @@ module Liega::Domain::Model
     def test_create_project
       name = "Test project name"
       user = User.new
-      assert_equal Project, user.create_project(name:).class
-      assert_equal({ name:, leader_id: user.id }, user.create_project(name:).to_h)
+      project = user.create_project(name:)
+      assert_equal Project, project.class
+      assert_equal({ id: project.id, name:, leader_id: user.id }, project.to_h)
     end
   end
 end
