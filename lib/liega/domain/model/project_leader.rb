@@ -1,4 +1,4 @@
-module Liega
+module Liega::Domain::Model
   class ProjectLeader
     attr_reader :id
 

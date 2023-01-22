@@ -1,6 +1,6 @@
 require "test_helper"
 
-module Liega
+module Liega::Domain::Model
   class ProjectLeaderTest < Test::Unit::TestCase
     def test_create_project
       name = "Test project name"
