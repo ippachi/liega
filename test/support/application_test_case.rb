@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationTestCase < Test::Unit::TestCase
   def setup
     @fiber = Fiber.new do
