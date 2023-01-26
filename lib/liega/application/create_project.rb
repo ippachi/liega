@@ -8,9 +8,7 @@ module Liega
       end
 
       def call(author, name)
-        project = author.create_project(name:)
-        @project_repo.save(project)
-        project
+        author.create_project(name:).tap { |project| @project_repo.save(project) }
       end
     end
   end
