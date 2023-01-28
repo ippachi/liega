@@ -4,19 +4,20 @@ module Liega
   module Domain
     module Model
       class Project
-        attr_reader :id
+        attr_reader :id, :members
+        private attr_reader :name
 
-        def initialize(name:, leader_id:)
-          @id = ULID.generate
-          @name = name
-          @leader_id = leader_id
+        def self.create(name:, members:)
+          new(name:, members: members.map { ProjectMember.new(**_1) })
         end
 
-        def to_h = { id:, name:, leader_id: }
+        def initialize(name:, members:)
+          @id = ULID.generate
+          @name = name
+          @members = members
+        end
 
-        private
-
-        attr_reader :name, :leader_id
+        def to_h = { id:, name:, members: members.map(&:to_h) }
       end
     end
   end

@@ -9,3 +9,6 @@ Style/StringLiterals:
 
 Style/Documentation:
   Enabled: false
+
+Style/AccessModifierDeclarations:
+  Enabled: false
