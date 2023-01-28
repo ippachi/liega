@@ -11,8 +11,8 @@ module Liega
           new(name:, members: members.map { ProjectMember.new(**_1) })
         end
 
-        def initialize(name:, members:)
-          @id = ULID.generate
+        def initialize(name:, members:, id: ULID.generate)
+          @id = id
           @name = name
           @members = members
         end

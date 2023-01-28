@@ -6,8 +6,8 @@ module Liega
       class User
         attr_reader :id
 
-        def initialize
-          @id = ULID.generate
+        def initialize(id: ULID.generate)
+          @id = id
         end
 
         def create_project(name:) = Project.create(name:, members: [{ user_id: @id, role: :leader }])
