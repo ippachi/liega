@@ -5,7 +5,7 @@ require "test_helper"
 module Liega
   module Domain
     module Model
-      class ProjectLeaderTest < Test::Unit::TestCase
+      class UserTest < Test::Unit::TestCase
         def test_create_project
           name = "Test project name"
           user = User.new
