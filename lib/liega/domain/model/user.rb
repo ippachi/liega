@@ -10,7 +10,7 @@ module Liega
           @id = id
         end
 
-        def create_project(name:) = Project.create(name:, members: [{ user_id: @id, role: :leader }])
+        def create_project(name:) = Project.create(name:, members: [{ user_id: @id, role: "leader" }])
         def to_h = { id: }
       end
     end

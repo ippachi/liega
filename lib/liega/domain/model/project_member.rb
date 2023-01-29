@@ -9,10 +9,16 @@ module Liega
         def initialize(user_id:, role:)
           @user_id = user_id
           @role = role
+          validate
         end
 
-        def to_h
-          { user_id:, role: role.to_s }
+        def leader? = role == "leader"
+        def to_h = { user_id:, role: role.to_s }
+
+        private
+
+        def validate
+          raise ValidationError, to_h if user_id.to_s.empty? || !%w[role leader].include?(role)
         end
       end
     end
