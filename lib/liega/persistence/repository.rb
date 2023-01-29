@@ -8,7 +8,7 @@ module Liega
         @relation_name
       end
 
-      def save(aggregate_root) = relation.insert(aggregate_root.to_h)
+      def save(aggregate_root) = DB.transaction { relation.insert(aggregate_root.to_h) }
       def find(id) = relation.first!(id:)
 
       private

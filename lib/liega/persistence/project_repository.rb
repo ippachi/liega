@@ -6,9 +6,11 @@ module Liega
       relation_name :projects
 
       def save(project)
-        DB[:projects].insert_conflict.insert(project.to_h.slice(:id, :name))
-        delete_active_project_members(project)
-        insert_active_project_members(project)
+        DB.transaction do
+          DB[:projects].insert_conflict.insert(project.to_h.slice(:id, :name))
+          delete_active_project_members(project)
+          insert_active_project_members(project)
+        end
       end
 
       private
