@@ -1,0 +1,20 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "db/schema.rb"
+    - "bin/**/*"
+    - "config.ru"
+    - "config/puma.rb"
+    - "config/boot.rb"
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/Documentation:
+  Enabled: false
+
+Rails/CreateTableWithTimestamps:
+  Enabled: false
