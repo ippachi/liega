@@ -4,11 +4,12 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-independent:
-  id: <%= ULID.generate %>
-
 normal:
-  id: <%= ULID.generate %>
+  user: normal
+  role: normal
+  project: default
 
 leader:
-  id: <%= ULID.generate %>
+  user: leader
+  role: leader
+  project: default

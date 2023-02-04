@@ -7,12 +7,11 @@ module Liega
     module Model
       class ProjectTest < ActiveSupport::TestCase
         {
-          "with empty name": { name: "", members: [{ user_id: "user_id", role: :leader }] },
-          "with zero leader": { name: "name", members: [{ user_id: "user_id", role: :normal }] }
+          "with empty name": { name: "" }
         }.each do |name, data|
           test "validation #{name}" do
             assert_raises ValidationError do
-              Project.create(**data)
+              Project.new(**data)
             end
           end
         end

@@ -7,7 +7,8 @@ module Liega
         attr_reader :user_id
         private attr_reader :role
 
-        def initialize(user_id:, role:)
+        def initialize(user_id:, role:, id: ULID.generate)
+          @id = id
           @user_id = user_id
           @role = role
           validate

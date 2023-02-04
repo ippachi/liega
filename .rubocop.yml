@@ -21,3 +21,6 @@ Rails/CreateTableWithTimestamps:
 
 Rails/CreateTableWithTimestamps:
   Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false

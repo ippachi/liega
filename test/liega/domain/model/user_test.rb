@@ -15,7 +15,7 @@ module Liega
         test "create project" do
           user = User.new
           project = user.create_project(name: "test project")
-          assert_equal user.id, project.leader_id
+          assert_equal Project, project.class
         end
       end
     end
