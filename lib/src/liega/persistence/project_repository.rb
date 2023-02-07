@@ -10,6 +10,7 @@ module Liega
 
       def save(project)
         Project.upsert(project.to_h)
+        project
       end
     end
   end

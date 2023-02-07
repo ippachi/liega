@@ -16,6 +16,7 @@ module Liega
           user = User.new
           project = user.create_project(name: "test project")
           assert_equal Project, project.class
+          assert_enqueued_with(job: ProjectCreated, args: [{ project:, author_id: user.id }])
         end
       end
     end

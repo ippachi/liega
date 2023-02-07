@@ -4,18 +4,21 @@ module Liega
   module Domain
     module Model
       class ProjectMember
-        attr_reader :user_id
-        private attr_reader :role
+        attr_reader :id, :user_id, :project_id
+        private attr_reader :role, :active_status
 
-        def initialize(user_id:, role:, id: ULID.generate)
+        def initialize(project_id:, user_id:, role:, active_status: true, id: ULID.generate)
           @id = id
+          @project_id = project_id
           @user_id = user_id
-          @role = role
+          @role = role.to_sym
+          @active_status = active_status
           validate
         end
 
-        def to_h = { user_id:, role: }
+        def to_h = { id:, project_id:, user_id:, role: }
         def leader? = role == :leader
+        def actived? = active_status
 
         private
 

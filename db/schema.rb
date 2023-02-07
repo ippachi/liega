@@ -15,13 +15,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_29_144300) do
   enable_extension "plpgsql"
 
   create_table "active_project_members", force: :cascade do |t|
-    t.bigint "project_member_id", null: false
-    t.index ["project_member_id"], name: "index_active_project_members_on_project_member_id"
+    t.string "project_member_id", null: false
+    t.index ["project_member_id"], name: "index_active_project_members_on_project_member_id", unique: true
   end
 
-  create_table "project_members", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "project_id", null: false
+  create_table "project_members", id: :string, force: :cascade do |t|
+    t.string "user_id", null: false
+    t.string "project_id", null: false
     t.string "role", null: false
     t.index ["project_id"], name: "index_project_members_on_project_id"
     t.index ["user_id", "project_id"], name: "index_project_members_on_user_id_and_project_id", unique: true
@@ -35,4 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_29_144300) do
   create_table "users", id: :string, force: :cascade do |t|
   end
 
+  add_foreign_key "active_project_members", "project_members"
+  add_foreign_key "project_members", "projects"
+  add_foreign_key "project_members", "users"
 end

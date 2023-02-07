@@ -12,7 +12,12 @@ module Liega
         end
 
         def to_h = { id: }
-        def create_project(name:) = Project.new(name:)
+
+        def create_project(name:)
+          project = Project.new(name:)
+          ProjectCreated.publish(project:, author_id: id)
+          project
+        end
 
         private
 

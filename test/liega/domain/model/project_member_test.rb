@@ -7,8 +7,8 @@ module Liega
     module Model
       class ProjectMemberTest < ActiveSupport::TestCase
         {
-          "with empty user_id": { user_id: "", role: :leader },
-          "with invalid role": { user_id: "user_id", role: :hoge }
+          "with empty user_id": { project_id: "test", user_id: "", role: :leader },
+          "with invalid role": { project_id: "test", user_id: "user_id", role: :hoge }
         }.each do |name, data|
           test "validation #{name}" do
             assert_raises ValidationError do

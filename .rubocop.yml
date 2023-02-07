@@ -24,3 +24,6 @@ Rails/CreateTableWithTimestamps:
 
 Rails/SkipsModelValidations:
   Enabled: false
+
+Rails/DynamicFindBy:
+  Enabled: false

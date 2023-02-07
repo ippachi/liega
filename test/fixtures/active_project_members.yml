@@ -4,7 +4,8 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-normal:
-  project_member: normal
-leader:
-  project_member: leader
+# normal:
+#   project_member: normal
+# 
+# leader:
+#   project_member: leader
