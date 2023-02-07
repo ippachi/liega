@@ -10,13 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_29_144300) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_07_130418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "active_project_members", force: :cascade do |t|
     t.string "project_member_id", null: false
     t.index ["project_member_id"], name: "index_active_project_members_on_project_member_id", unique: true
+  end
+
+  create_table "backlogs", id: :string, force: :cascade do |t|
+    t.string "project_id", null: false
+    t.index ["project_id"], name: "index_backlogs_on_project_id", unique: true
   end
 
   create_table "project_members", id: :string, force: :cascade do |t|
@@ -36,6 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_29_144300) do
   end
 
   add_foreign_key "active_project_members", "project_members"
+  add_foreign_key "backlogs", "projects"
   add_foreign_key "project_members", "projects"
   add_foreign_key "project_members", "users"
 end

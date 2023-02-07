@@ -1,0 +1,17 @@
+# frozen_string_literal: true
+
+require "test_helper"
+
+module Liega
+  module Domain
+    module Model
+      class BacklogTest < ActiveSupport::TestCase
+        test "validation with nil project_id" do
+          assert_raises ValidationError do
+            Backlog.new(project_id: nil)
+          end
+        end
+      end
+    end
+  end
+end
