@@ -16,6 +16,7 @@ module Liega
         def to_h = { id:, name: }
         def add_member(user_id, role) = ProjectMember.new(project_id: id, user_id:, role:)
         def ==(other) = id == other.id
+        def create_backlog = Backlog.new(project_id: id)
 
         private
 

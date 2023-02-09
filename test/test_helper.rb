@@ -18,6 +18,8 @@ module ActiveSupport
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
-    # Add more helper methods to be used by all tests here...
+    def project_repo = Liega::Persistence::ProjectRepository.new
+    def project_member_repo = Liega::Persistence::ProjectMemberRepository.new
+    def backlog_repo = Liega::Persistence::BacklogRepository.new
   end
 end
