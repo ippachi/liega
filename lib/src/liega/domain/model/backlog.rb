@@ -13,6 +13,7 @@ module Liega
         end
 
         def to_h = { id:, project_id: }
+        def create_issue(summary:) = Issue.new(backlog_id: id, summary:)
 
         private
 

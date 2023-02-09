@@ -11,6 +11,12 @@ module Liega
             Backlog.new(project_id: nil)
           end
         end
+
+        test "create issue" do
+          backlog = Backlog.new(project_id: "test")
+          issue = backlog.create_issue(summary: "test")
+          assert_equal backlog.id, issue.backlog_id
+        end
       end
     end
   end
