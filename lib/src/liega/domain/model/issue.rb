@@ -14,7 +14,7 @@ module Liega
           validate
         end
 
-        def to_h = { id:, backlog_id: }
+        def to_h = { id:, backlog_id:, summary: }
 
         private
 

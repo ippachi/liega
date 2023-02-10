@@ -21,5 +21,6 @@ module ActiveSupport
     def project_repo = Liega::Persistence::ProjectRepository.new
     def project_member_repo = Liega::Persistence::ProjectMemberRepository.new
     def backlog_repo = Liega::Persistence::BacklogRepository.new
+    def issue_repo = Liega::Persistence::IssueRepository.new
   end
 end
