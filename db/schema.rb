@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_10_104206) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_18_164727) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_10_104206) do
   create_table "backlogs", id: :string, force: :cascade do |t|
     t.string "project_id", null: false
     t.index ["project_id"], name: "index_backlogs_on_project_id", unique: true
+  end
+
+  create_table "developer_users", id: :string, force: :cascade do |t|
+    t.string "user_id", null: false
+    t.index ["user_id"], name: "index_developer_users_on_user_id", unique: true
+  end
+
+  create_table "devise_users", force: :cascade do |t|
+    t.string "user_id", null: false
+    t.datetime "remember_created_at"
+    t.index ["user_id"], name: "index_devise_users_on_user_id", unique: true
   end
 
   create_table "issues", id: :string, force: :cascade do |t|
@@ -48,6 +59,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_10_104206) do
 
   add_foreign_key "active_project_members", "project_members"
   add_foreign_key "backlogs", "projects"
+  add_foreign_key "developer_users", "users"
+  add_foreign_key "devise_users", "users"
   add_foreign_key "issues", "backlogs"
   add_foreign_key "project_members", "projects"
   add_foreign_key "project_members", "users"
