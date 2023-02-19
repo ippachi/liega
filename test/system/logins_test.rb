@@ -2,7 +2,8 @@ require "application_system_test_case"
 
 class LoginsTest < ApplicationSystemTestCase
   test "login" do
-    visit root_url
+    visit new_project_url
+    assert_title "index"
 
     click_on "Login"
 
@@ -11,12 +12,11 @@ class LoginsTest < ApplicationSystemTestCase
 
     click_on "Sign In"
 
-    assert_text "index"
+    assert_title "New Project"
   end
 
   test "first login" do
     visit root_url
-
     click_on "Login"
 
     fill_in "Name", with: "user001"

@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   post "auth/:provider/callback", to: "sessions#create"
 
   resource :registrations, only: %i[new create]
-  resources :projects, only: %i[index]
+  resources :projects, only: %i[index new]
 end
