@@ -1,3 +1,9 @@
 <% provide :title, "New Project" %>
 
 <h1>Projects#new</h1>
+<%= form_with scope: :project, url: projects_path do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.submit "Create" %>
+<% end %>

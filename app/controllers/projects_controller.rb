@@ -5,7 +5,16 @@ class ProjectsController < ApplicationController
 
   def index; end
 
+  def show
+    @project = Project.find(params[:id])
+  end
+
   def new; end
+
+  def create
+    project = Liega::App::CreateProject.new.call(current_user_id, params[:project][:name])
+    redirect_to project_path(project.id)
+  end
 
   private
 

@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   match "auth/:provider/callback", to: "sessions#create", via: %i[get post]
 
   resource :registrations, only: %i[new create]
-  resources :projects, only: %i[index new]
+  resources :projects, only: %i[index show new create]
 end

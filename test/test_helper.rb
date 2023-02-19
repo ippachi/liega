@@ -18,6 +18,8 @@ module ActiveSupport
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
+    private
+
     def project_repo = Liega::Persistence::ProjectRepository.new
     def project_member_repo = Liega::Persistence::ProjectMemberRepository.new
     def backlog_repo = Liega::Persistence::BacklogRepository.new
@@ -31,6 +33,17 @@ module ActiveSupport
 
     teardown do
       OmniAuth.config.test_mode = false
+    end
+
+    private
+
+    def login
+      OmniAuth.config.mock_auth[:developer] = OmniAuth::AuthHash.new(
+        provider: "developer",
+        uid: developer_users(:normal).id
+      )
+      post "/auth/developer"
+      follow_redirect!
     end
   end
 end
