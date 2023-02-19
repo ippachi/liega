@@ -84,3 +84,5 @@ group :test do
 
   gem "simplecov", "~> 0.22.0"
 end
+
+gem "cssbundling-rails", "~> 1.1"
