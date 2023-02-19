@@ -23,4 +23,14 @@ module ActiveSupport
     def backlog_repo = Liega::Persistence::BacklogRepository.new
     def issue_repo = Liega::Persistence::IssueRepository.new
   end
+
+  class ControllerTestCase < ActionDispatch::IntegrationTest
+    setup do
+      OmniAuth.config.test_mode = true
+    end
+
+    teardown do
+      OmniAuth.config.test_mode = false
+    end
+  end
 end

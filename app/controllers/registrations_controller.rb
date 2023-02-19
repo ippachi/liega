@@ -1,4 +1,6 @@
 class RegistrationsController < ApplicationController
+  before_action :redirect_when_authenticated
+
   def new; end
 
   def create
@@ -8,5 +10,11 @@ class RegistrationsController < ApplicationController
     developer_user.update!(user_id: user.id)
     session[:current_user_id] = user.id
     redirect_to projects_path
+  end
+
+  private
+
+  def redirect_when_authenticated
+    redirect_to projects_path if User.find_by(id: session[:current_user_id])
   end
 end
