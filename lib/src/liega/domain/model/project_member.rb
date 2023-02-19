@@ -3,11 +3,12 @@
 module Liega
   module Domain
     module Model
-      class ProjectMember
+      class ProjectMember < Entity
         attr_reader :id, :user_id, :project_id
         private attr_reader :role, :active_status
 
         def initialize(project_id:, user_id:, role:, active_status: true, id: ULID.generate)
+          super()
           @id = id
           @project_id = project_id
           @user_id = user_id
@@ -23,7 +24,7 @@ module Liega
         private
 
         def validate
-          raise ValidationError, to_h if user_id.to_s.empty? || %i[normal leader].exclude?(role)
+          should_present(:user_id).should_include(:role, %i[normal leader])
         end
       end
     end

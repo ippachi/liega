@@ -3,10 +3,11 @@
 module Liega
   module Domain
     module Model
-      class Backlog
+      class Backlog < Entity
         attr_reader :id, :project_id
 
         def initialize(project_id:, id: ULID.generate)
+          super()
           @id = id
           @project_id = project_id
           validate
@@ -18,7 +19,7 @@ module Liega
         private
 
         def validate
-          raise ValidationError, to_h if project_id.to_s.empty?
+          should_present(:project_id)
         end
       end
     end

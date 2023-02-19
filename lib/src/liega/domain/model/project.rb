@@ -3,11 +3,12 @@
 module Liega
   module Domain
     module Model
-      class Project
+      class Project < Entity
         attr_reader :id
         private attr_reader :name
 
         def initialize(name:, id: ULID.generate)
+          super()
           @id = id
           @name = name
           validate
@@ -21,7 +22,7 @@ module Liega
         private
 
         def validate
-          raise ValidationError, to_h if id.to_s.empty? || name.to_s.empty?
+          should_present(:id).should_present(:name).should_length_lteq(:name, 255)
         end
       end
     end

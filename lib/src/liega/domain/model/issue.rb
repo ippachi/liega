@@ -3,11 +3,12 @@
 module Liega
   module Domain
     module Model
-      class Issue
+      class Issue < Entity
         attr_reader :id, :backlog_id
         private attr_reader :summary
 
         def initialize(backlog_id:, summary:, id: ULID.generate)
+          super()
           @id = id
           @backlog_id = backlog_id
           @summary = summary
@@ -19,7 +20,7 @@ module Liega
         private
 
         def validate
-          raise ValidationError, to_h if summary.empty?
+          should_present(:summary)
         end
       end
     end

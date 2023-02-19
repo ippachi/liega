@@ -3,10 +3,11 @@
 module Liega
   module Domain
     module Model
-      class User
+      class User < Entity
         attr_reader :id
 
         def initialize(id: ULID.generate)
+          super()
           @id = id
           validate
         end
@@ -22,7 +23,7 @@ module Liega
         private
 
         def validate
-          raise ValidationError, to_h if id.to_s.empty?
+          should_present(:id)
         end
       end
     end
