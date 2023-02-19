@@ -4,6 +4,11 @@ module Liega
   module Persistence
     class UserRepository
       def find(id) = Domain::Model::User.new(**User.find(id).attributes.symbolize_keys)
+
+      def save(user)
+        User.upsert(user.to_h)
+        user
+      end
     end
   end
 end

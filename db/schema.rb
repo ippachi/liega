@@ -25,14 +25,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_164727) do
   end
 
   create_table "developer_users", id: :string, force: :cascade do |t|
-    t.string "user_id", null: false
+    t.string "user_id"
     t.index ["user_id"], name: "index_developer_users_on_user_id", unique: true
-  end
-
-  create_table "devise_users", force: :cascade do |t|
-    t.string "user_id", null: false
-    t.datetime "remember_created_at"
-    t.index ["user_id"], name: "index_devise_users_on_user_id", unique: true
   end
 
   create_table "issues", id: :string, force: :cascade do |t|
@@ -60,7 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_164727) do
   add_foreign_key "active_project_members", "project_members"
   add_foreign_key "backlogs", "projects"
   add_foreign_key "developer_users", "users"
-  add_foreign_key "devise_users", "users"
   add_foreign_key "issues", "backlogs"
   add_foreign_key "project_members", "projects"
   add_foreign_key "project_members", "users"
