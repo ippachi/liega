@@ -9,6 +9,7 @@ AllCops:
     - "config.ru"
     - "config/puma.rb"
     - "config/boot.rb"
+    - "vendor/**/*"
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
