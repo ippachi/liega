@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-  protect_from_forgery except: [:create]
-
   def create
     session[:current_user_info] = request.env["omniauth.auth"]
     if current_user_id
