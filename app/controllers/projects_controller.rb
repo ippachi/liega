@@ -6,6 +6,6 @@ class ProjectsController < ApplicationController
   private
 
   def authorize_user!
-    head :unauthorized unless User.find_by(id: session[:current_user_id])
+    redirect_to root_path unless User.find_by(id: session[:current_user_id])
   end
 end
