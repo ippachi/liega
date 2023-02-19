@@ -10,4 +10,4 @@ Rails.application.load_tasks
 
 RuboCop::RakeTask.new
 
-task default: %i[test test:system rubocop]
+task default: %i[test test:system]

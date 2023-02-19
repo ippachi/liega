@@ -72,6 +72,8 @@ group :development do
 
   gem "rubocop", "~> 1.44", require: false
   gem "rubocop-rails", "~> 2.17", require: false
+
+  gem "brakeman", "~> 5.4", require: false
 end
 
 group :test do
