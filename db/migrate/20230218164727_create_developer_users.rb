@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateDeveloperUsers < ActiveRecord::Migration[7.0]
   def change
     create_table :developer_users, id: :string do |t|
