@@ -15,36 +15,24 @@ module Liega
       end
 
       def call(author_id, project_name)
-        author = @user_repo.find(author_id)
-        project = create_project(author, project_name)
-        add_member(project, author)
-        create_backlog(project)
-        project
-      end
+        transaction do
+          author = @user_repo.find(author_id)
+          project = author.create_project(name: project_name)
+          project_member = project.add_member(author.id, :leader)
+          backlog = project.create_backlog
 
-      def project_created(project:, author_id:)
-        author = @user_repo.find(author_id)
-        add_member(project, author)
-        create_backlog(project)
+          transaction { save_resources(project, project_member, backlog) }
+          project
+        end
       end
 
       private
 
-      def create_project(author, project_name)
-        transaction do
-          project = author.create_project(name: project_name)
-          @project_repo.save(project)
-        end
+      def save_resources(project, project_member, backlog)
+        @project_repo.save(project)
+        @project_member_repo.save(project_member)
+        @backlog_repo.save(backlog)
       end
-
-      def add_member(project, user)
-        transaction do
-          project_member = project.add_member(user.id, :leader)
-          @project_member_repo.save(project_member)
-        end
-      end
-
-      def create_backlog(project) = transaction { @backlog_repo.save(project.create_backlog) }
     end
   end
 end
