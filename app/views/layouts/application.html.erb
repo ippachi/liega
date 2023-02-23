@@ -11,6 +11,14 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% if yield(:without_navbar).empty? %>
+      <div class="navbar bg-base-100 drop-shadow-md">
+        <%= link_to "Liega", root_path, class: "btn btn-ghost normal-case text-xl" %>
+      </div>
+    <% end %>
+
+    <div class="prose-sm container mt-8 mx-auto">
+      <%= yield %>
+    </div>
   </body>
 </html>

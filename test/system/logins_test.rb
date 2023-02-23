@@ -29,6 +29,6 @@ class LoginsTest < ApplicationSystemTestCase
     fill_in "Name", with: "user001"
     click_on "Sign Up"
 
-    assert_text "index"
+    assert_title "projects"
   end
 end

@@ -1,4 +1,5 @@
 <% provide :title, "New Project" %>
+<% provide :without_navbar, true %>
 
 <h1>Projects#new</h1>
 <%= form_with scope: :project, url: projects_path do |f| %>

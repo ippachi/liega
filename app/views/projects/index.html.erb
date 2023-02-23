@@ -1,4 +1,24 @@
 <% provide :title, "projects" %>
 
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
+<h1>Projects</h1>
+<div class="overflow-x-auto w-full">
+  <table class="table w-full">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Key</th>
+        <th>Leader</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= link_to project.name, project_path(project.id), class: "link" %></td>
+          <td><%= project.id %></td>
+          <td><%= project.leader.id %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

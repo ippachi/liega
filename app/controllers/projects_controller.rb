@@ -3,10 +3,12 @@
 class ProjectsController < ApplicationController
   before_action :authorize_user!
 
-  def index; end
+  def index
+    @projects = current_user.projects.preload(:leader)
+  end
 
   def show
-    @project = Project.find(params[:id])
+    @project = current_user.projects.find(params[:id])
   end
 
   def new; end
@@ -19,9 +21,13 @@ class ProjectsController < ApplicationController
   private
 
   def authorize_user!
-    return if User.find_by(id: session[:current_user_id])
+    return if current_user
 
     session[:fowarding_url] = request.original_url
     redirect_to root_path
+  end
+
+  def current_user
+    @current_user ||= User.find_by(id: session[:current_user_id])
   end
 end
