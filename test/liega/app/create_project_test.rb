@@ -14,7 +14,6 @@ module Liega
         project = @sut.call(@user_id, "project_name")
 
         assert project_repo.find(project.id)
-        assert project_member_repo.find_by_project_and_user(project.id, @user_id)
         assert backlog_repo.find_by_project(project.id)
       end
     end

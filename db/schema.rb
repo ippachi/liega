@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_164727) do
   enable_extension "plpgsql"
 
   create_table "active_project_members", force: :cascade do |t|
-    t.string "project_member_id", null: false
+    t.bigint "project_member_id", null: false
     t.index ["project_member_id"], name: "index_active_project_members_on_project_member_id", unique: true
   end
 
@@ -35,7 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_164727) do
     t.index ["backlog_id"], name: "index_issues_on_backlog_id"
   end
 
-  create_table "project_members", id: :string, force: :cascade do |t|
+  create_table "project_members", force: :cascade do |t|
     t.string "user_id", null: false
     t.string "project_id", null: false
     t.string "role", null: false
