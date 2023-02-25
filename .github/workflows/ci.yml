@@ -37,8 +37,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '19.x'
-      - name: Enable corepack
-        run: corepack enable && corepack prepare yarn@stable --activate
       - name: Install dependencies
         run: yarn
       # Add or replace database setup steps here
