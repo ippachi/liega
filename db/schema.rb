@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_164727) do
 
   create_table "backlogs", id: :string, force: :cascade do |t|
     t.string "project_id", null: false
+    t.integer "lock_version", default: 0, null: false
     t.index ["project_id"], name: "index_backlogs_on_project_id", unique: true
   end
 
@@ -32,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_164727) do
   create_table "issues", id: :string, force: :cascade do |t|
     t.string "backlog_id", null: false
     t.string "summary", null: false
+    t.integer "lock_version", default: 0, null: false
     t.index ["backlog_id"], name: "index_issues_on_backlog_id"
   end
 
@@ -46,9 +48,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_164727) do
 
   create_table "projects", id: :string, force: :cascade do |t|
     t.string "name", null: false
+    t.integer "lock_version", default: 0, null: false
   end
 
   create_table "users", id: :string, force: :cascade do |t|
+    t.integer "lock_version", default: 0, null: false
   end
 
   add_foreign_key "active_project_members", "project_members"

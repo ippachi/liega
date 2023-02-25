@@ -2,12 +2,13 @@
 
 module Liega
   module Persistence
-    class UserRepository
-      def find(id) = Domain::Model::User.new(**User.find(id).attributes.symbolize_keys)
+    class UserRepository < Repository
+      self.active_record = User
 
-      def save(user)
-        User.upsert(user.to_h)
-        user
+      def find(id) = Domain::Model::User.new(**aggregate_root_attributes(User.find(id)))
+
+      def save(user, lock_version = nil)
+        super { User.upsert(user.to_h) }
       end
     end
   end

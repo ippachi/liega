@@ -2,7 +2,9 @@
 
 module Liega
   module Persistence
-    class BacklogRepository
+    class BacklogRepository < Repository
+      self.active_record = Backlog
+
       def find(id)
         create_instance(Backlog.find(id))
       end
@@ -11,15 +13,14 @@ module Liega
         create_instance(Backlog.find_by!(project_id:))
       end
 
-      def save(backlog)
-        Backlog.upsert(backlog.to_h, unique_by: :project_id)
-        backlog
+      def save(backlog, lock_version = nil)
+        super { Backlog.upsert(backlog.to_h, unique_by: :project_id) }
       end
 
       private
 
       def create_instance(model)
-        attributes = model.attributes.symbolize_keys
+        attributes = aggregate_root_attributes(model)
         Domain::Model::Backlog.new(**attributes)
       end
     end

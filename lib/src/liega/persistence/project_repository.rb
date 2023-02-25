@@ -2,19 +2,22 @@
 
 module Liega
   module Persistence
-    class ProjectRepository
+    class ProjectRepository < Repository
+      self.active_record = Project
+
       def find(id)
-        attributes = Project.find(id).attributes.symbolize_keys
+        attributes = aggregate_root_attributes(Project.find(id))
         project_members = ProjectMember.active.where(project_id: id).map { _1.slice(:user_id, :role).symbolize_keys }
         Domain::Model::Project.new(**attributes, members: project_members)
       end
 
-      def save(project)
-        attributes = project.to_h
-        Project.upsert(attributes.slice(:id, :name))
-        project_member_ids = update_project_members(attributes[:id], attributes[:members])
-        update_active_project_members(attributes[:id], project_member_ids)
-        project
+      def save(project, lock_version = nil)
+        super do
+          attributes = project.to_h
+          Project.upsert(attributes.slice(:id, :name))
+          project_member_ids = update_project_members(attributes[:id], attributes[:members])
+          update_active_project_members(attributes[:id], project_member_ids)
+        end
       end
 
       private
