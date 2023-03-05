@@ -5,5 +5,5 @@ module.exports = {
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js'
   ],
-  plugins: [require("@tailwindcss/typography"), require("daisyui")]
+  plugins: [require("daisyui")]
 }

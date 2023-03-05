@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Liega | <%= yield(:title) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -12,12 +12,17 @@
 
   <body>
     <% if yield(:without_navbar).empty? %>
-      <div class="navbar bg-base-100 drop-shadow-md">
-        <%= link_to "Liega", root_path, class: "btn btn-ghost normal-case text-xl" %>
+      <div class="navbar bg-base-100 px-4">
+        <%= link_to "Liega", root_path, class: "btn btn-ghost normal-case hidden md:[display:inherit]" %>
+        <div class="avatar">
+          <div class="rounded-full w-8">
+            <img src="https://github.com/ippachi.png" />
+          </div>
+        </div>
       </div>
     <% end %>
 
-    <div class="prose-sm container mt-8 mx-auto">
+    <div class="prose-sm container mt-2 mx-auto px-4">
       <%= yield %>
     </div>
   </body>
