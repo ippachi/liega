@@ -5,7 +5,7 @@
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
   },
   "devDependencies": {
-    "daisyui": "^2.51.1"
+    "daisyui": "^2.51.3"
   },
   "dependencies": {
     "autoprefixer": "latest",
