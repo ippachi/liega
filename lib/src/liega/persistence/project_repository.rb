@@ -7,11 +7,10 @@ module Liega
 
       def find(code)
         relation = Project.find_by!(code:)
-        attributes = aggregate_root_attributes(relation)
-        project_members = relation.project_members.map do |project_member|
+        members = relation.project_members.map do |project_member|
           { user_code: project_member.user.code, role: project_member.role }
         end
-        Domain::Model::Project.new(**attributes, members: project_members)
+        Domain::Model::Project.new(**aggregate_root_attributes(relation), members:)
       end
 
       def save(project, lock_version = nil)
@@ -31,7 +30,7 @@ module Liega
           project_member.assign_attributes(role: member[:role])
           project_member.save!
 
-          project_member.create_active_project_member
+          project_member.create_active_project_member!
         end
       end
     end
