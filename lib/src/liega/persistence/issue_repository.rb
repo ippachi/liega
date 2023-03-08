@@ -5,9 +5,9 @@ module Liega
     class IssueRepository < Repository
       self.active_record = Issue
 
-      def find(id)
-        attributes = aggregate_root_attributes(Issue.find(id))
-        Domain::Model::Issue.new(**attributes)
+      def find(code)
+        attributes = aggregate_root_attributes(Issue.find_by!(code:))
+        Domain::Model::Issue.new(**attributes.except(:id))
       end
 
       def save(issue, lock_version = nil)

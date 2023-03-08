@@ -30,11 +30,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_164727) do
     t.index ["user_id"], name: "index_developer_users_on_user_id", unique: true
   end
 
-  create_table "issues", id: :string, force: :cascade do |t|
+  create_table "issues", force: :cascade do |t|
+    t.string "code", null: false
     t.string "backlog_id", null: false
     t.string "summary", null: false
     t.integer "lock_version", default: 0, null: false
     t.index ["backlog_id"], name: "index_issues_on_backlog_id"
+    t.index ["code"], name: "index_issues_on_code", unique: true
   end
 
   create_table "project_members", force: :cascade do |t|

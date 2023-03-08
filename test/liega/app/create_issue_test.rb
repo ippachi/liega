@@ -13,7 +13,7 @@ module Liega
         author_id = users(:normal).id
         backlog_id = backlogs(:default).id
         issue = @sut.call(author_id, backlog_id, "summary")
-        assert issue_repo.find(issue.id)
+        assert issue_repo.find(issue.code)
       end
     end
   end
