@@ -4,18 +4,18 @@ module Liega
   module Domain
     module Model
       class Issue < Entity
-        attr_reader :code, :backlog_id
+        attr_reader :code, :backlog_code
         private attr_reader :summary
 
-        def initialize(backlog_id:, summary:, code: ULID.generate)
+        def initialize(backlog_code:, summary:, code: ULID.generate)
           super()
           @code = code
-          @backlog_id = backlog_id
+          @backlog_code = backlog_code
           @summary = summary
           validate
         end
 
-        def to_h = { code:, backlog_id:, summary: }
+        def to_h = { code:, backlog_code:, summary: }
 
         private
 

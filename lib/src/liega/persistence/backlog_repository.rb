@@ -5,8 +5,8 @@ module Liega
     class BacklogRepository < Repository
       self.active_record = Backlog
 
-      def find(id)
-        create_instance(Backlog.find(id))
+      def find(code)
+        create_instance(Backlog.find_by!(code:))
       end
 
       def find_by_project(project_id)
@@ -21,7 +21,7 @@ module Liega
 
       def create_instance(model)
         attributes = aggregate_root_attributes(model)
-        Domain::Model::Backlog.new(**attributes)
+        Domain::Model::Backlog.new(**attributes.except(:id))
       end
     end
   end

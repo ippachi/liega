@@ -11,8 +11,8 @@ module Liega
 
       test "create issue" do
         author_id = users(:normal).id
-        backlog_id = backlogs(:default).id
-        issue = @sut.call(author_id, backlog_id, "summary")
+        backlog_code = backlogs(:default).code
+        issue = @sut.call(author_id, backlog_code, "summary")
         assert issue_repo.find(issue.code)
       end
     end

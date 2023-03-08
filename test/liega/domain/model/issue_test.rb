@@ -8,7 +8,7 @@ module Liega
       class IssueTest < ActiveSupport::TestCase
         test "validation with empty summary" do
           assert_raises ValidationError do
-            Issue.new(summary: "", backlog_id: "test")
+            Issue.new(summary: "", backlog_code: "test")
           end
         end
       end

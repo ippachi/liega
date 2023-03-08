@@ -19,9 +19,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_164727) do
     t.index ["project_member_id"], name: "index_active_project_members_on_project_member_id", unique: true
   end
 
-  create_table "backlogs", id: :string, force: :cascade do |t|
+  create_table "backlogs", force: :cascade do |t|
+    t.string "code", null: false
     t.string "project_id", null: false
     t.integer "lock_version", default: 0, null: false
+    t.index ["code"], name: "index_backlogs_on_code", unique: true
     t.index ["project_id"], name: "index_backlogs_on_project_id", unique: true
   end
 
@@ -32,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_164727) do
 
   create_table "issues", force: :cascade do |t|
     t.string "code", null: false
-    t.string "backlog_id", null: false
+    t.bigint "backlog_id", null: false
     t.string "summary", null: false
     t.integer "lock_version", default: 0, null: false
     t.index ["backlog_id"], name: "index_issues_on_backlog_id"

@@ -4,17 +4,17 @@ module Liega
   module Domain
     module Model
       class Backlog < Entity
-        attr_reader :id, :project_id
+        attr_reader :code, :project_id
 
-        def initialize(project_id:, id: ULID.generate)
+        def initialize(project_id:, code: ULID.generate)
           super()
-          @id = id
+          @code = code
           @project_id = project_id
           validate
         end
 
-        def to_h = { id:, project_id: }
-        def create_issue(summary:) = Issue.new(backlog_id: id, summary:)
+        def to_h = { code:, project_id: }
+        def create_issue(summary:) = Issue.new(backlog_code: code, summary:)
 
         private
 

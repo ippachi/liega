@@ -12,9 +12,9 @@ module Liega
         @issue_repo = issue_repo
       end
 
-      def call(author_id, backlog_id, summary)
+      def call(author_id, backlog_code, summary)
         _author = @user_repo.find(author_id)
-        backlog = @backlog_repo.find(backlog_id)
+        backlog = @backlog_repo.find(backlog_code)
         issue = backlog.create_issue(summary:)
         @issue_repo.save(issue)
         issue

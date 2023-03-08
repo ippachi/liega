@@ -15,7 +15,7 @@ module Liega
         test "create issue" do
           backlog = Backlog.new(project_id: "test")
           issue = backlog.create_issue(summary: "test")
-          assert_equal backlog.id, issue.backlog_id
+          assert_equal backlog.code, issue.backlog_code
         end
       end
     end
