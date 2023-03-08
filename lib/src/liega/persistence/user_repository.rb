@@ -7,7 +7,7 @@ module Liega
 
       def find(id) = Domain::Model::User.new(**aggregate_root_attributes(User.find(id)))
 
-      def save(user, lock_version = nil)
+      def save(user, _lock_version = nil)
         User.upsert(user.to_h)
       end
     end

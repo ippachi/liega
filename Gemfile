@@ -50,6 +50,7 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem "cssbundling-rails", "~> 1.1"
 gem "ulid", "~> 1.4"
 
 gem "omniauth", "~> 2.1"
@@ -73,6 +74,7 @@ group :development do
   # gem "spring"
 
   gem "rubocop", "~> 1.48", require: false
+  gem "rubocop-capybara", "~> 2.17", require: false
   gem "rubocop-rails", "~> 2.18", require: false
 
   gem "brakeman", "~> 5.4", require: false
@@ -86,5 +88,3 @@ group :test do
 
   gem "simplecov", "~> 0.22.0"
 end
-
-gem "cssbundling-rails", "~> 1.1"
