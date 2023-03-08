@@ -4,20 +4,20 @@ module Liega
   module Domain
     module Model
       class Project < Entity
-        attr_reader :id
+        attr_reader :code
         private attr_reader :name, :members
 
-        def initialize(name:, members:, id: ULID.generate)
+        def initialize(name:, members:, code: ULID.generate)
           super()
-          @id = id
+          @code = code
           @name = name
           @members = members
           validate
         end
 
-        def to_h = { id:, name:, members: }
-        def ==(other) = id == other.id
-        def create_backlog = Backlog.new(project_id: id)
+        def to_h = { code:, name:, members: }
+        def ==(other) = code == other.code
+        def create_backlog = Backlog.new(project_code: code)
 
         def add_member(user_id, role)
           members.push(user_id:, role:)
@@ -32,7 +32,7 @@ module Liega
         private
 
         def validate
-          should_present(:id).should_present(:name).should_length_lteq(:name, 255)
+          should_present(:code).should_present(:name).should_length_lteq(:name, 255)
           raise ValidationError, to_h if members.count { _1[:role] == "leader" } != 1
         end
       end

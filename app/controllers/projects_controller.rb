@@ -8,14 +8,14 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = current_user.projects.find(params[:id])
+    @project = current_user.projects.find_by!(code: params[:id])
   end
 
   def new; end
 
   def create
     project = Liega::App::CreateProject.new.call(current_user_id, params[:project][:name])
-    redirect_to project_path(project.id)
+    redirect_to project_path(project.code)
   end
 
   private

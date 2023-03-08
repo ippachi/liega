@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_164727) do
 
   create_table "backlogs", force: :cascade do |t|
     t.string "code", null: false
-    t.string "project_id", null: false
+    t.bigint "project_id", null: false
     t.integer "lock_version", default: 0, null: false
     t.index ["code"], name: "index_backlogs_on_code", unique: true
     t.index ["project_id"], name: "index_backlogs_on_project_id", unique: true
@@ -43,16 +43,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_164727) do
 
   create_table "project_members", force: :cascade do |t|
     t.string "user_id", null: false
-    t.string "project_id", null: false
+    t.bigint "project_id", null: false
     t.string "role", null: false
     t.index ["project_id"], name: "index_project_members_on_project_id"
     t.index ["user_id", "project_id"], name: "index_project_members_on_user_id_and_project_id", unique: true
     t.index ["user_id"], name: "index_project_members_on_user_id"
   end
 
-  create_table "projects", id: :string, force: :cascade do |t|
+  create_table "projects", force: :cascade do |t|
+    t.string "code", null: false
     t.string "name", null: false
     t.integer "lock_version", default: 0, null: false
+    t.index ["code"], name: "index_projects_on_code", unique: true
   end
 
   create_table "users", id: :string, force: :cascade do |t|

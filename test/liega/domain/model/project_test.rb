@@ -20,7 +20,7 @@ module Liega
         test "create backlog" do
           project = Project.new(name: "project", members: [{ user_id: "user_id", role: "leader" }])
           backlog = project.create_backlog
-          assert_equal project.id, backlog.project_id
+          assert_equal project.code, backlog.project_code
         end
       end
     end

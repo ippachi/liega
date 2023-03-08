@@ -17,12 +17,6 @@ module Liega
 
           self
         end
-
-        def should_include(name, set)
-          raise ValidationError, to_h if set.exclude?(instance_variable_get(:"@#{name}"))
-
-          self
-        end
       end
     end
   end

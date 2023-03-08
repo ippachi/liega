@@ -5,4 +5,5 @@
 # below each fixture, per the syntax in the comments below
 #
 default:
+  code: <%= ULID.generate %>
   name: "default project"

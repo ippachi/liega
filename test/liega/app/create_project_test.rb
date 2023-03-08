@@ -13,8 +13,8 @@ module Liega
       test "create project" do
         project = @sut.call(@user_id, "project_name")
 
-        assert project_repo.find(project.id)
-        assert backlog_repo.find_by_project(project.id)
+        assert project_repo.find(project.code)
+        assert backlog_repo.find_by_project(project.code)
       end
     end
   end

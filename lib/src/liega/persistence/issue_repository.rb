@@ -12,10 +12,8 @@ module Liega
       end
 
       def save(issue, lock_version = nil)
-        relation = Issue.find_or_initialize_by(code: issue.code)
         backlog_id = Backlog.find_by!(code: issue.backlog_code).id
-        relation.assign_attributes(**issue.to_h.except(:backlog_code), backlog_id:, lock_version:)
-        relation.save!
+        save_relation(issue, { **issue.to_h.except(:backlog_code), backlog_id: }, lock_version)
       end
     end
   end
