@@ -5,10 +5,10 @@ module Liega
     class UserRepository < Repository
       self.active_record = User
 
-      def find(id) = Domain::Model::User.new(**aggregate_root_attributes(User.find(id)))
+      def find(code) = Domain::Model::User.new(**aggregate_root_attributes(User.find_by!(code:)))
 
-      def save(user, _lock_version = nil)
-        User.upsert(user.to_h)
+      def save(user, lock_version = nil)
+        save_relation(user, user.to_h, lock_version)
       end
     end
   end

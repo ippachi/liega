@@ -12,9 +12,9 @@ module Liega
         @backlog_repo = backlog_repo
       end
 
-      def call(author_id, project_name)
+      def call(author_code, project_name)
         transaction do
-          author = @user_repo.find(author_id)
+          author = @user_repo.find(author_code)
           project = author.create_project(name: project_name)
           backlog = project.create_backlog
 

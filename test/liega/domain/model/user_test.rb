@@ -6,9 +6,9 @@ module Liega
   module Domain
     module Model
       class UserTest < ActiveSupport::TestCase
-        test "validation with nil id" do
+        test "validation with nil code" do
           assert_raises ValidationError do
-            User.new(id: nil)
+            User.new(code: nil)
           end
         end
 

@@ -3,5 +3,5 @@
 class ApplicationController < ActionController::Base
   private
 
-  def current_user_id = session[:current_user_id]
+  def current_user_code = session[:current_user_code]
 end

@@ -5,8 +5,8 @@ class SessionsController < ApplicationController
 
   def create
     session[:current_user_info] = request.env["omniauth.auth"]
-    if current_user_id
-      session[:current_user_id] = current_user_id
+    if current_user_code
+      session[:current_user_code] = current_user_code
       redirect_to session[:fowarding_url] || projects_path
     else
       redirect_to new_registrations_path
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
   private
 
-  def current_user_id
-    @current_user_id ||= DeveloperUser.find_or_create_by(code: session[:current_user_info]["uid"]).user_id
+  def current_user_code
+    @current_user_code ||= DeveloperUser.find_or_create_by(code: session[:current_user_info]["uid"]).user&.code
   end
 end

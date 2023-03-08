@@ -11,7 +11,7 @@ module Liega
 
       private
 
-      def aggregate_root_attributes(model) = model.attributes.symbolize_keys.except(:lock_version)
+      def aggregate_root_attributes(model) = model.attributes.symbolize_keys.except(:id, :lock_version)
       def transaction(&) = ActiveRecord::Base.transaction(&)
 
       def save_relation(entity, attributes, lock_version)

@@ -6,9 +6,9 @@ module Liega
       self.active_record = Issue
 
       def find(code)
-        attributes = aggregate_root_attributes(Issue.find_by!(code:))
-        backlog_code = Backlog.find(attributes.delete(:backlog_id)).code
-        Domain::Model::Issue.new(**attributes.except(:id), backlog_code:)
+        issue = Issue.find_by!(code:)
+        attributes = aggregate_root_attributes(issue).except(:backlog_id)
+        Domain::Model::Issue.new(**attributes, backlog_code: issue.backlog.code)
       end
 
       def save(issue, lock_version = nil)

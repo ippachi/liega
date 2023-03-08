@@ -19,13 +19,13 @@ module Liega
         def ==(other) = code == other.code
         def create_backlog = Backlog.new(project_code: code)
 
-        def add_member(user_id, role)
-          members.push(user_id:, role:)
+        def add_member(user_code, role)
+          members.push(user_code:, role:)
           validate
         end
 
-        def remove_member(user_id)
-          members.delete(members.find { _1[:user_id] == user_id })
+        def remove_member(user_code)
+          members.delete(members.find { _1[:user_code] == user_code })
           validate
         end
 

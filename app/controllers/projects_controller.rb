@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
   def new; end
 
   def create
-    project = Liega::App::CreateProject.new.call(current_user_id, params[:project][:name])
+    project = Liega::App::CreateProject.new.call(current_user_code, params[:project][:name])
     redirect_to project_path(project.code)
   end
 
@@ -28,6 +28,6 @@ class ProjectsController < ApplicationController
   end
 
   def current_user
-    @current_user ||= User.find_by(id: session[:current_user_id])
+    @current_user ||= User.find_by(code: session[:current_user_code])
   end
 end

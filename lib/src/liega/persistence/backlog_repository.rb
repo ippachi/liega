@@ -10,8 +10,7 @@ module Liega
       end
 
       def find_by_project(project_code)
-        project_id = Project.find_by!(code: project_code).id
-        create_instance(Backlog.find_by!(project_id:))
+        create_instance(Project.find_by!(code: project_code).backlog)
       end
 
       def save(backlog, lock_version = nil)
@@ -23,7 +22,7 @@ module Liega
 
       def create_instance(model)
         attributes = aggregate_root_attributes(model)
-        Domain::Model::Backlog.new(**attributes.except(:id, :project_id), project_code: model.project.code)
+        Domain::Model::Backlog.new(**attributes.except(:project_id), project_code: model.project.code)
       end
     end
   end

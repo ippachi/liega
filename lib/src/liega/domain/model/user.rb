@@ -4,21 +4,21 @@ module Liega
   module Domain
     module Model
       class User < Entity
-        attr_reader :id
+        attr_reader :code
 
-        def initialize(id: ULID.generate)
+        def initialize(code: ULID.generate)
           super()
-          @id = id
+          @code = code
           validate
         end
 
-        def to_h = { id: }
-        def create_project(name:) = Project.new(name:, members: [{ user_id: id, role: "leader" }])
+        def to_h = { code: }
+        def create_project(name:) = Project.new(name:, members: [{ user_code: code, role: "leader" }])
 
         private
 
         def validate
-          should_present(:id)
+          should_present(:code)
         end
       end
     end

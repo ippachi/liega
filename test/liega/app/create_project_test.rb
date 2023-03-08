@@ -7,11 +7,11 @@ module Liega
     class CreateProjectTest < ActiveSupport::TestCase
       setup do
         @sut = CreateProject.new
-        @user_id = users(:independent).id
+        @user_code = users(:independent).code
       end
 
       test "create project" do
-        project = @sut.call(@user_id, "project_name")
+        project = @sut.call(@user_code, "project_name")
 
         assert project_repo.find(project.code)
         assert backlog_repo.find_by_project(project.code)
