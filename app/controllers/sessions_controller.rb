@@ -16,6 +16,6 @@ class SessionsController < ApplicationController
   private
 
   def current_user_id
-    @current_user_id ||= DeveloperUser.find_or_create_by(id: session[:current_user_info]["uid"]).user_id
+    @current_user_id ||= DeveloperUser.find_or_create_by(code: session[:current_user_info]["uid"]).user_id
   end
 end

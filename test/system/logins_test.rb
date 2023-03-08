@@ -10,7 +10,7 @@ class LoginsTest < ApplicationSystemTestCase
     click_on "Login"
 
     fill_in "Name", with: "user001"
-    fill_in "Email", with: developer_users(:normal).id
+    fill_in "Email", with: developer_users(:normal).code
 
     click_on "Sign In"
 

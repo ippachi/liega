@@ -39,7 +39,7 @@ module ActiveSupport
     def login
       OmniAuth.config.mock_auth[:developer] = OmniAuth::AuthHash.new(
         provider: "developer",
-        uid: developer_users(:normal).id
+        uid: developer_users(:normal).code
       )
       post "/auth/developer"
       follow_redirect!

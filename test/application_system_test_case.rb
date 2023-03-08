@@ -4,7 +4,7 @@ require "test_helper"
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   driver = ENV["CI"] ? :headless_chrome : :chrome
-  driven_by :selenium, using: driver, screen_size: [1400, 1400]
+  driven_by :selenium, using: driver, screen_size: [400, 800]
 
   private
 
@@ -13,7 +13,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     click_on "Login"
 
     fill_in "Name", with: "user001"
-    fill_in "Email", with: developer_users(:normal).id
+    fill_in "Email", with: developer_users(:normal).code
 
     click_on "Sign In"
   end
