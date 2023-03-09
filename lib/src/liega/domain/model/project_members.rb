@@ -24,9 +24,11 @@ module Liega
         end
 
         def remove(user_code)
-          members.delete(members.find { _1.user_code == user_code })
+          members.delete(find(user_code))
           validate
         end
+
+        def find(user_code) = members.find { _1.user_code == user_code }
 
         private
 

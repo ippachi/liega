@@ -4,8 +4,7 @@ module Liega
   module Domain
     module Model
       class StarredProject < Entity
-        attr_reader :code
-        private attr_reader :user_code, :project_code
+        attr_reader :code, :user_code, :project_code
 
         def initialize(user_code:, project_code:, code: ULID.generate)
           super()

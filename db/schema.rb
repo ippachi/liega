@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_18_164727) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_09_142724) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_164727) do
     t.index ["code"], name: "index_projects_on_code", unique: true
   end
 
+  create_table "starred_projects", force: :cascade do |t|
+    t.string "code", null: false
+    t.bigint "user_id", null: false
+    t.bigint "project_id", null: false
+    t.index ["code"], name: "index_starred_projects_on_code", unique: true
+    t.index ["project_id"], name: "index_starred_projects_on_project_id"
+    t.index ["user_id", "project_id"], name: "index_starred_projects_on_user_id_and_project_id", unique: true
+    t.index ["user_id"], name: "index_starred_projects_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "code", null: false
     t.integer "lock_version", default: 0, null: false
@@ -71,4 +81,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_164727) do
   add_foreign_key "issues", "backlogs"
   add_foreign_key "project_members", "projects"
   add_foreign_key "project_members", "users"
+  add_foreign_key "starred_projects", "projects"
+  add_foreign_key "starred_projects", "users"
 end

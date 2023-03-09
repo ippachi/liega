@@ -24,6 +24,7 @@ module Liega
         def create_backlog = Backlog.new(project_code: code)
         def add_member(...) = members.add(...)
         def remove_member(...) = members.remove(...)
+        def find_member(...) = members.find(...)
 
         private
 

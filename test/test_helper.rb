@@ -23,6 +23,7 @@ module ActiveSupport
     def project_repo = Liega::Persistence::ProjectRepository.new
     def backlog_repo = Liega::Persistence::BacklogRepository.new
     def issue_repo = Liega::Persistence::IssueRepository.new
+    def starred_project_repo = Liega::Persistence::StarredProjectRepository.new
   end
 
   class ControllerTestCase < ActionDispatch::IntegrationTest
