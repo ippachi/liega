@@ -15,6 +15,7 @@ module Liega
 
         def serialize = { user_code:, project_code:, role: }
         def leader? = @role.to_s == "leader"
+        def star_project = StarredProject.new(user_code:, project_code:)
       end
     end
   end
