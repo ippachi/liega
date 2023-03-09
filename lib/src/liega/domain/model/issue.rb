@@ -15,7 +15,7 @@ module Liega
           validate
         end
 
-        def to_h = { code:, backlog_code:, summary: }
+        def serialize = { code:, backlog_code:, summary: }
 
         private
 

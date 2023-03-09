@@ -13,7 +13,7 @@ module Liega
           validate
         end
 
-        def to_h = { code:, project_code: }
+        def serialize = { code:, project_code: }
         def create_issue(summary:) = Issue.new(backlog_code: code, summary:)
 
         private

@@ -7,7 +7,11 @@ module Liega
         attr_reader :code
         private attr_reader :name, :members
 
-        def initialize(name:, members:, code: ULID.generate)
+        def self.create(name:, members:, code: ULID.generate)
+          new(name:, members: ProjectMembers.create(members:, project_code: code), code:)
+        end
+
+        def initialize(name:, members:, code:)
           super()
           @code = code
           @name = name
@@ -15,25 +19,16 @@ module Liega
           validate
         end
 
-        def to_h = { code:, name:, members: }
+        def serialize = { code:, name:, members: members.serialize }
         def ==(other) = code == other.code
         def create_backlog = Backlog.new(project_code: code)
-
-        def add_member(user_code, role)
-          members.push(user_code:, role:)
-          validate
-        end
-
-        def remove_member(user_code)
-          members.delete(members.find { _1[:user_code] == user_code })
-          validate
-        end
+        def add_member(...) = members.add(...)
+        def remove_member(...) = members.remove(...)
 
         private
 
         def validate
           should_present(:code).should_present(:name).should_length_lteq(:name, 255)
-          raise ValidationError, to_h if members.count { _1[:role] == "leader" } != 1
         end
       end
     end

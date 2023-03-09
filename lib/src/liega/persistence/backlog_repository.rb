@@ -15,7 +15,7 @@ module Liega
 
       def save(backlog, lock_version = nil)
         project_id = Project.find_by!(code: backlog.project_code).id
-        save_relation(backlog, { **backlog.to_h.except(:project_code), project_id: }, lock_version)
+        save_relation(backlog, { **backlog.serialize.except(:project_code), project_id: }, lock_version)
       end
 
       private

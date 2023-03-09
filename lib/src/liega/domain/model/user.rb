@@ -12,8 +12,8 @@ module Liega
           validate
         end
 
-        def to_h = { code: }
-        def create_project(name:) = Project.new(name:, members: [{ user_code: code, role: "leader" }])
+        def serialize = { code: }
+        def create_project(name:) = Project.create(name:, members: [{ user_code: code, role: "leader" }])
 
         private
 

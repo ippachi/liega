@@ -8,7 +8,7 @@ module Liega
       def find(code) = Domain::Model::User.new(**aggregate_root_attributes(User.find_by!(code:)))
 
       def save(user, lock_version = nil)
-        save_relation(user, user.to_h, lock_version)
+        save_relation(user, user.serialize, lock_version)
       end
     end
   end
