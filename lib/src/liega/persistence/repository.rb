@@ -22,6 +22,7 @@ module Liega
           relation.save!
           yield(relation) if block_given?
         end
+        entity
       end
     end
   end

@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   before_action :authorize_user!
 
   def index
-    @projects = current_user.projects
+    @projects = current_user.projects.order(:code)
   end
 
   def show

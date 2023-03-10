@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateStarredProjects < ActiveRecord::Migration[7.0]
   def change
     create_table :starred_projects do |t|
