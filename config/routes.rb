@@ -6,4 +6,6 @@ Rails.application.routes.draw do
 
   resource :registrations, only: %i[new create]
   resources :projects, only: %i[index show new create]
+
+  resource :starred_projects, only: %i[update]
 end

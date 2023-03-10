@@ -7,7 +7,7 @@ module Liega
 
       def find(code)
         relation = Project.find_by!(code:)
-        members = relation.project_members.map do |project_member|
+        members = relation.project_members.preload(:user).map do |project_member|
           { user_code: project_member.user.code, role: project_member.role }
         end
         Domain::Model::Project.create(**aggregate_root_attributes(relation), members:)
