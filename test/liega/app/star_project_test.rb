@@ -20,6 +20,14 @@ module Liega
           StarProject.new.call(user_code, project_code)
         end
       end
+
+      test "star not member project" do
+        user_code = users(:independent).code
+        project_code = projects(:default).code
+        assert_raises StarProject::NotMemberError do
+          StarProject.new.call(user_code, project_code)
+        end
+      end
     end
   end
 end
