@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   before_action :authorize_user!
 
   def index
-    @projects = current_user.projects.order(:code)
+    @projects = current_user.projects.preload(:starred_members).order(:code)
   end
 
   def show

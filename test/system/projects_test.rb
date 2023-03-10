@@ -10,4 +10,12 @@ class ProjectsTest < ApplicationSystemTestCase
     click_on "Create"
     assert_title "test project"
   end
+
+  test "star project" do
+    login
+    visit projects_url
+    assert_no_selector "[data-testid=star]"
+    find("[data-testid=nostar]").click
+    assert_selector "[data-testid=star]"
+  end
 end

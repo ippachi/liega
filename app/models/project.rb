@@ -8,4 +8,6 @@ class Project < ApplicationRecord
                      active.where(role: "leader")
                    }, class_name: "ProjectMember", inverse_of: :project, dependent: :restrict_with_exception
   has_one :backlog, dependent: :restrict_with_exception
+  has_many :starred_projects, dependent: :restrict_with_exception
+  has_many :starred_members, through: :starred_projects, class_name: "User", source: :user
 end
