@@ -4,8 +4,10 @@ class ProjectsController < ApplicationController
   before_action :authorize_user!
 
   def index
-    @projects = current_user.projects.preload(:starred_members).order(:code)
+    @q = current_user.projects.ransack(params[:q])
+    @projects = @q.result.preload(:starred_members).order(:code)
     @starred_projects = current_user.starred_projects.preload(project: :starred_members).order(:code)
+    @is_searching = params.dig(:q, :name_or_code_cont).present?
   end
 
   def show

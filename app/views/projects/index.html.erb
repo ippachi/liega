@@ -1,36 +1,49 @@
 <% provide :title, "projects" %>
 
-<main class="grid grid-cols-12 gap-4">
+<main class="grid grid-cols-12 gap-4" data-controller="projects">
   <h1 class="text-3xl col-span-12">Projects</h1>
-  <input type="text" placeholder="Search Projects" class="input input-bordered col-span-12" />
-  <div class="col-span-12 grid">
-    <p class="col-span-12 font-bold">
-    Starred Projects
-    </p>
-    <div class="col-span-12">
-      <ul>
-        <%= turbo_frame_tag "starred_projects" do %>
-          <% @starred_projects.each do |starred_project| %>
-            <%= turbo_frame_tag starred_project do %>
-              <%= render starred_project.project %>
+  <%= search_form_for @q, class: "col-span-12", data: {
+    turbo_frame: "search_result",
+    turbo_action: :advance,
+  } do |f| %>
+    <%=
+      f.text_field :name_or_code_cont, placeholder: "Search Projects",
+        class: "input input-bordered w-full",
+        data: { action: "input->projects#search input->projects#loading" }
+    %>
+  <% end %>
+  <%= turbo_frame_tag "search_result", class: "col-span-12 grid gap-4" do %>
+    <% unless @is_searching %>
+      <div class="col-span-12 grid">
+        <p class="col-span-12 font-bold">
+        Starred Projects
+        </p>
+        <div class="col-span-12">
+          <ul>
+            <%= turbo_frame_tag "starred_projects" do %>
+              <% @starred_projects.each do |starred_project| %>
+                <%= turbo_frame_tag starred_project do %>
+                  <%= render starred_project.project %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+    <div class="col-span-12 grid">
+      <p class="col-span-12 font-bold">
+      <%= @is_searching ? "Search Result" : "All Projects" %>
+      </p>
+      <div class="col-span-12">
+        <ul>
+          <% @projects.each do |project| %>
+            <%= turbo_frame_tag project do %>
+              <%= render project %>
             <% end %>
           <% end %>
-        <% end %>
-      </ul>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="col-span-12 grid">
-    <p class="col-span-12 font-bold">
-    All Projects
-    </p>
-    <div class="col-span-12">
-      <ul>
-        <% @projects.each do |project| %>
-          <%= turbo_frame_tag project do %>
-            <%= render project %>
-          <% end %>
-        <% end %>
-      </ul>
-    </div>
-  </div>
+  <% end %>
 </main>

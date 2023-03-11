@@ -13,4 +13,12 @@ class Project < ApplicationRecord
                      active.where(role: "leader")
                    }, class_name: "ProjectMember", inverse_of: :project, dependent: :restrict_with_exception
   has_one :backlog, dependent: :restrict_with_exception
+
+  def self.ransackable_attributes(...)
+    %w[name code]
+  end
+
+  def self.ransackable_associations(...)
+    []
+  end
 end

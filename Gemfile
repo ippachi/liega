@@ -51,6 +51,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "cssbundling-rails", "~> 1.1"
+gem "ransack", "~> 4.0"
 gem "ulid", "~> 1.4"
 
 gem "omniauth", "~> 2.1"
