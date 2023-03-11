@@ -10,6 +10,7 @@ Rails.application.configure do
     Bullet.console       = true
     Bullet.rails_logger  = true
     Bullet.add_footer    = true
+    load(Rails.root.join("config/bullet"))
   end
 
   # Settings specified here will take precedence over those in config/application.rb.

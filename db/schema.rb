@@ -61,12 +61,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_142724) do
 
   create_table "starred_projects", force: :cascade do |t|
     t.string "code", null: false
-    t.bigint "user_id", null: false
-    t.bigint "project_id", null: false
+    t.bigint "project_member_id", null: false
     t.index ["code"], name: "index_starred_projects_on_code", unique: true
-    t.index ["project_id"], name: "index_starred_projects_on_project_id"
-    t.index ["user_id", "project_id"], name: "index_starred_projects_on_user_id_and_project_id", unique: true
-    t.index ["user_id"], name: "index_starred_projects_on_user_id"
+    t.index ["project_member_id"], name: "index_starred_projects_on_project_member_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -81,6 +78,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_142724) do
   add_foreign_key "issues", "backlogs"
   add_foreign_key "project_members", "projects"
   add_foreign_key "project_members", "users"
-  add_foreign_key "starred_projects", "projects"
-  add_foreign_key "starred_projects", "users"
+  add_foreign_key "starred_projects", "project_members"
 end
