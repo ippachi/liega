@@ -13,5 +13,4 @@ class Project < ApplicationRecord
                      active.where(role: "leader")
                    }, class_name: "ProjectMember", inverse_of: :project, dependent: :restrict_with_exception
   has_one :backlog, dependent: :restrict_with_exception
-
 end

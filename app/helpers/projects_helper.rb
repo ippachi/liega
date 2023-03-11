@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 module ProjectsHelper
-  def star_icon(project)
+  def star_icon(project) # rubocop:disable Metrics/MethodLength
     starred = project.starred_members.find { _1 == current_user }
     color = starred ? "text-yellow-500" : ""
     fill = starred ? "currentColor" : "none"
     testid = starred ? "star" : "nostar"
     method = starred ? :delete : :put
 
+    # rubocop:disable Layout/LineLength
     form_with url: starred_projects_path, method: do |f|
       concat(f.hidden_field(:project_code, value: project.code))
       concat(
@@ -22,5 +23,6 @@ module ProjectsHelper
         end
       )
     end
+    # rubocop:enable Layout/LineLength
   end
 end

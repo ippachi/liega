@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Liega
   module App
     class UnstarProject < Interactor
