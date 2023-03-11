@@ -4,6 +4,12 @@ module Liega
   module Domain
     module Model
       class Entity
+        def destroy
+          @_destroy = true
+        end
+
+        def destroyed? = !!@_destroy
+
         protected
 
         def should_present(name)
