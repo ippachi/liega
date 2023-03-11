@@ -6,8 +6,9 @@ module ProjectsHelper
     color = starred ? "text-yellow-500" : ""
     fill = starred ? "currentColor" : "none"
     testid = starred ? "star" : "nostar"
+    method = starred ? :delete : :put
 
-    form_with url: starred_projects_path, method: :put do |f|
+    form_with url: starred_projects_path, method: do |f|
       concat(f.hidden_field(:project_code, value: project.code))
       concat(
         content_tag(:button, type: "submit") do

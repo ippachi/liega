@@ -17,5 +17,7 @@ class ProjectsTest < ApplicationSystemTestCase
     assert_no_selector "[data-testid=star]"
     find("[data-testid=nostar]").click
     assert_selector "[data-testid=star]"
+    find("[data-testid=star]").click
+    assert_selector "[data-testid=nostar]"
   end
 end

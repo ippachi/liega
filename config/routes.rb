@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resource :registrations, only: %i[new create]
   resources :projects, only: %i[index show new create]
 
-  resource :starred_projects, only: %i[update]
+  put "starred_projects", to: "starred_projects#update"
+  delete "starred_projects", to: "starred_projects#destroy"
 end
