@@ -2,36 +2,35 @@
 
 <main class="grid grid-cols-12 gap-4">
   <h1 class="text-3xl col-span-12">Projects</h1>
-  <input type="text" placeholder="Search Projects" class="input input-bordered input-sm col-span-12" />
-  <p class="col-span-12">
+  <input type="text" placeholder="Search Projects" class="input input-bordered col-span-12" />
+  <div class="col-span-12 grid">
+    <p class="col-span-12 font-bold">
+    Starred Projects
+    </p>
+    <div class="col-span-12">
+      <ul>
+        <%= turbo_frame_tag "starred_projects" do %>
+          <% @starred_projects.each do |starred_project| %>
+            <%= turbo_frame_tag starred_project do %>
+              <%= render starred_project.project %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="col-span-12 grid">
+    <p class="col-span-12 font-bold">
     All Projects
-  </p>
-  <div class="col-span-12">
-    <ul>
-      <% @projects.each do |project| %>
-        <li>
-          <a class="grid grid-cols-12 grid-rows-2 py-2 border-b border-gray-600">
-            <div class="avatar col-span-2 row-span-2 grid place-content-center">
-              <div class="rounded w-8 h-8">
-                <img src="https://picsum.photos/300" />
-              </div>
-            </div>
-
-            <div class="row-start-1 col-start-3 col-span-8">
-              <%= project.name %>
-            </div>
-
-            <div class="row-start-2 col-start-3 col-span-8 text-xs text-gray-500">
-              <%= project.code %>
-            </div>
-            <div class="grid col-span-2 row-span-2 place-content-center">
-              <%= turbo_frame_tag project do %>
-                <%= star_icon(project) %>
-              <% end %>
-            </div>
-          </a>
-        </li>
-      <% end %>
-    </ul>
+    </p>
+    <div class="col-span-12">
+      <ul>
+        <% @projects.each do |project| %>
+          <%= turbo_frame_tag project do %>
+            <%= render project %>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </main>

@@ -35,6 +35,7 @@ module Liega
           project_member = ProjectMember.find_by!(user:, project:)
           save_relation(starred_project, { code: starred_project.code, project_member: }, lock_version)
         end
+        starred_project
       end
 
       private

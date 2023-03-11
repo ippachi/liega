@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = current_user.projects.preload(:starred_members).order(:code)
+    @starred_projects = current_user.starred_projects.preload(project: :starred_members).order(:code)
   end
 
   def show
