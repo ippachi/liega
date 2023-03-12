@@ -1,6 +1,6 @@
 <%= turbo_stream.update @starred_project.project %>
 <%= turbo_stream.append "starred_projects" do %>
-  <li>
+  <li data-controller="projects">
     <%= turbo_frame_tag @starred_project do %>
       <div class="fade-in">
         <%= render @starred_project.project %>
