@@ -12,7 +12,7 @@ module ProjectsHelper
     form_with url: starred_projects_path, method: do |f|
       concat(f.hidden_field(:project_code, value: project.code))
       concat(
-        content_tag(:button, type: "submit") do
+        content_tag(:button, type: "submit", "aria-label": "star") do
           content_tag(:div, class: color, data: { testid: }) do
             content_tag :svg, xmlns: "http://www.w3.org/2000/svg", fill:, viewBox: "0 0 24 24",
                               "stroke-width": "1.5", stroke: "currentColor", class: "w-6 h-6" do

@@ -1,6 +1,6 @@
 <%= turbo_stream.update @starred_project.project %>
 <%= turbo_stream.update @starred_project do %>
-  <div class="fade-out" data-controller="projects" data-action="animationend->projects#remove">
+  <div class="fade-out" data-action="animationend->projects#remove">
     <%= render @starred_project.project %>
   </div>
 <% end %>

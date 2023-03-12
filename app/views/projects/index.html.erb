@@ -19,13 +19,13 @@
         Starred Projects
         </p>
         <div class="col-span-12">
-          <ul>
-            <%= turbo_frame_tag "starred_projects" do %>
-              <% @starred_projects.each do |starred_project| %>
+          <ul id="starred_projects">
+            <% @starred_projects.each do |starred_project| %>
+              <li data-controller="projects">
                 <%= turbo_frame_tag starred_project do %>
                   <%= render starred_project.project %>
                 <% end %>
-              <% end %>
+              </li>
             <% end %>
           </ul>
         </div>
@@ -38,9 +38,11 @@
       <div class="col-span-12">
         <ul>
           <% @projects.each do |project| %>
-            <%= turbo_frame_tag project do %>
-              <%= render project %>
-            <% end %>
+            <li>
+              <%= turbo_frame_tag project do %>
+                <%= render project %>
+              <% end %>
+            </li>
           <% end %>
         </ul>
       </div>
