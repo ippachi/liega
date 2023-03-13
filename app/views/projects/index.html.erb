@@ -2,7 +2,7 @@
 
 <main class="grid grid-cols-12 gap-4" data-controller="projects">
   <h1 class="text-3xl col-span-12">Projects</h1>
-  <%= search_form_for @q, class: "col-span-12", data: {
+  <%= search_form_for @q, class: "col-span-12 sticky top-16 z-20", data: {
     turbo_frame: "search_result",
     turbo_action: :advance,
   } do |f| %>
@@ -15,7 +15,7 @@
   <%= turbo_frame_tag "search_result", class: "col-span-12 grid gap-4" do %>
     <% unless @is_searching %>
       <div class="col-span-12 grid">
-        <p class="col-span-12 font-bold">
+        <p class="col-span-12 font-bold sticky top-28 z-10 bg-white leading-10">
           Starred Projects
         </p>
         <div class="col-span-12">
@@ -32,8 +32,8 @@
       </div>
     <% end %>
     <div class="col-span-12 grid">
-      <p class="col-span-12 font-bold">
-      <%= @is_searching ? "Search Result" : "All Projects" %>
+      <p class="col-span-12 font-bold sticky top-28 z-10 bg-white leading-10">
+        <%= @is_searching ? "Search Result" : "All Projects" %>
       </p>
       <div class="col-span-12">
         <ul>

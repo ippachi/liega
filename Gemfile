@@ -80,6 +80,7 @@ group :development do
   gem "rubocop-rails", "~> 2.18", require: false
 
   gem "brakeman", "~> 5.4", require: false
+  gem "faker", "~> 3.1", require: false
 end
 
 group :test do
