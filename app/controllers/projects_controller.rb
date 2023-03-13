@@ -1,4 +1,4 @@
-# frozen_string_literal: trueprojectscontroller
+# frozen_string_literal: true
 
 class ProjectsController < ApplicationController
   before_action :authorize_user!
