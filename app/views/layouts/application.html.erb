@@ -11,16 +11,18 @@
   </head>
 
   <body>
-    <% if yield(:without_navbar).empty? %>
-      <div class="navbar bg-base-100 px-4">
-        <%= link_to "Liega", root_path, class: "btn btn-ghost normal-case hidden md:[display:inherit]" %>
-        <div class="avatar">
-          <div class="rounded-full w-8">
-            <img src="https://github.com/ippachi.png" alt="Your avatar"/>
-          </div>
+    <div class="navbar bg-base-100 px-4">
+      <div class="avatar flex-1">
+        <div class="rounded-full w-8">
+          <img src="https://github.com/ippachi.png" alt="Your avatar"/>
         </div>
       </div>
-    <% end %>
+      <label for="new_project_modal" id="new_project_icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 flex-none text-primary">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+        </svg>
+      </label>
+    </div>
 
     <div class="prose-sm container mt-2 mx-auto px-4">
       <%= yield %>

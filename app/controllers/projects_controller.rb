@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literal: trueprojectscontroller
 
 class ProjectsController < ApplicationController
   before_action :authorize_user!
@@ -13,8 +13,6 @@ class ProjectsController < ApplicationController
   def show
     @project = current_user.projects.find_by!(code: params[:id])
   end
-
-  def new; end
 
   def create
     project = Liega::App::CreateProject.new.call(current_user_code, params[:project][:name])

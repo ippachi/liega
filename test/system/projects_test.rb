@@ -5,9 +5,10 @@ require "application_system_test_case"
 class ProjectsTest < ApplicationSystemTestCase
   test "create project" do
     login
-    visit new_project_url
+    visit projects_url
+    find_by_id("new_project_icon").click
     fill_in "Name", with: "test project"
-    click_on "Create"
+    click_on "Submit"
     assert_title "test project"
   end
 

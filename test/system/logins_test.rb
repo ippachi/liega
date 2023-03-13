@@ -4,7 +4,7 @@ require "application_system_test_case"
 
 class LoginsTest < ApplicationSystemTestCase
   test "login" do
-    visit new_project_url
+    visit projects_url
     assert_title "index"
 
     click_on "Login"
@@ -14,7 +14,7 @@ class LoginsTest < ApplicationSystemTestCase
 
     click_on "Sign In"
 
-    assert_title "New Project"
+    assert_title "Projects"
   end
 
   test "first login" do
@@ -29,6 +29,6 @@ class LoginsTest < ApplicationSystemTestCase
     fill_in "Name", with: "user001"
     click_on "Sign Up"
 
-    assert_title "projects"
+    assert_title "Projects"
   end
 end

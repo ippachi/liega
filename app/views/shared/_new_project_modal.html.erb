@@ -1,0 +1,26 @@
+<input type="checkbox" id="new_project_modal" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box w-screen h-[100dvh] rounded-none p-0">
+    <div class="card bg-base-100 shadow-xl w-screen h-[100dvh] rounded-none">
+      <figure>
+        <label for="new_project_modal">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 absolute top-4 left-2 text-primary">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </label>
+        <img src="/busy-project-manager-overwhelmed-by-work.png" alt="Shoes" /></figure>
+      <div class="card-body">
+        <h2 class="card-title justify-center">New Project</h2>
+        <%= form_with scope: :project, url: projects_path do |f| %>
+          <div class="form-control w-full">
+            <%= f.label :name, class: "label" do %>
+              <span class="label-text">Project Name</span>
+            <% end %>
+            <%= f.text_field :name, class: "input input-bordered w-full" %>
+          </div>
+          <%= f.submit "Submit", class: "btn btn-block mt-4" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
